@@ -1,7 +1,7 @@
 ﻿# Script ServersStatus.ps1
 # Autor: Fernando Cisneros Chavez (verdevenus23@gmail.com)
 # Fecha: 26 de septiembre de 2025
-$servidores = Get-Content "C:\Users\Administrador\Documents\serverStatus\servidores.txt" | ForEach-Object {
+$servidores = Get-Content "C:\...\servidores.txt" | ForEach-Object {
     $partes = $_ -split "`t`t"
     if ($partes.Count -eq 4) {
         [PSCustomObject]@{
@@ -119,14 +119,14 @@ foreach ($srv in $servidores) {
 }
 
 # Guardar resultados en CSV
-$resultados | Export-Csv -Path "C:\Users\Administrador\Documents\serverStatus\monitoreo_servidores.csv" -NoTypeInformation -Encoding UTF8
+$resultados | Export-Csv -Path "C:\...\monitoreo_servidores.csv" -NoTypeInformation -Encoding UTF8
 Write-Host "`n Monitoreo completo. Resultados guardados en 'monitoreo_servidores.csv'"
 
 # Parámetros de conexión
-$server = "distribuidor"
-$database = "FZDW_STAGING"
-$tablaDestino = "operacion.statusServers_tbl"
-$csvPath = "C:\Users\Administrador\Documents\serverStatus\monitoreo_servidores.csv"
+$server = "server"
+$database = "database"
+$tablaDestino = "schema.statusServers_tbl"
+$csvPath = "C:\...\monitoreo_servidores.csv"
 $fechaCarga = Get-Date
 
 # Leer CSV como DataTable
@@ -179,3 +179,4 @@ $bulkCopy.WriteToServer($dataTable)
 $connection.Close()
 
 #Write-Host "CSV cargado correctamente a [$tablaDestino] en [$database]."
+
